@@ -1,0 +1,32 @@
+<% layout("/layouts/boilerPlate") %>
+<body>
+    <form class="needs-validation" novalidate action="/newuser" method="POST">
+       
+    <div class="row" >
+       <div class="col-8 offset-2">
+            <h3>Add new whatsapp user</h3>
+            <div class="components">
+             <span>Name:</span>
+             <input class="form-control" type="text" placeholder="Name" name="name" required>
+            </div>
+            
+            <div class="components">
+             <span>Image:</span>
+             <input class="form-control" type="text" placeholder="image link" name="image" >
+            </div>
+           
+            <div class="components">
+                <span>Mobile:</span>
+                <input class="form-control" type="text" placeholder="Mobile No." name="mobile" >
+               </div>
+            <div  class="mt-3">
+             <button class="btn btn-success" type="submit">Submit</button>
+            </div>
+         
+        </div>
+    </div>
+</form>
+
+
+    <script src="/js/script.js"></script>
+</body>
