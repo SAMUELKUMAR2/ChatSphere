@@ -62,14 +62,9 @@ const navigate = useNavigate();
             {message}
             
     <p className='text-[9px]  opacity-60 pt-1 '>{}</p>
-
-          </div>
-          
+   </div>    
       ))}
-
-
-       
-       </div>
+   </div>
        {/* input box */}
        <div className="sticky bottom-0  w-full h-[5vh] flex   gap-4">
         <div className="flex ">
