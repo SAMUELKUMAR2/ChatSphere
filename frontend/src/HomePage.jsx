@@ -15,8 +15,10 @@ function HomePage() {
   const { userData } = location.state || {};
 
     const [chatSelect,setChatSelect] = useState(false);
-    const [selectedUser,setSelectedUser] = useState("");
-    const [selectedUserImage,setSelectedUserImage] = useState("");
+
+    //Selected UserData
+    const [selectedUserData,setSelectedUserData] = useState([]);
+    
     return (
 
     
@@ -26,12 +28,12 @@ function HomePage() {
         <Sidebar />
        </div> */}
        {userData ?
-       <div className={chatSelect?'max-md:hidden':`chats w-[40vw] h-full max-md:w-[100vw] max-md:h-full `}>
-        <ChatMember userData={userData} setChatSelect={setChatSelect} setSelectedUser={setSelectedUser} setSelectedUserImage={setSelectedUserImage}/>
+       <div className={chatSelect?'max-md:hidden w-[40vw] h-full':`chats w-[40vw] h-full max-md:w-[100vw] max-md:h-full `}>
+        <ChatMember userData={userData} setChatSelect={setChatSelect} setSelectedUserData={setSelectedUserData} />
        </div>:"No contact available..."
        }
-      { chatSelect?  <div className={`max-md:w-[100vw] max-md:h-full  w-[65vw] h-full  bg-slate-300 `}>
-        <ChatBox setChatSelect={setChatSelect} selectedUser={selectedUser} selectedUserImage={selectedUserImage}/>
+      { chatSelect?  <div className={`max-md:w-[100vw] max-md:h-full  w-[60vw] h-full  bg-slate-300 `}>
+        <ChatBox userData={userData} setChatSelect={setChatSelect} selectedUserData={selectedUserData}/>
        </div>:
         <div className='chatArea w-[56vw] h-full max-md:hidden bg-slate-300 '>
         <ChatThumnail />

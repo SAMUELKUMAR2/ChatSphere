@@ -31,6 +31,8 @@ function LoginPage() {
     .catch((e)=>{
       console.log("Error.........",e)
       if(e.response.status===404){
+        setMobile("")
+        setPassword("")
         setError("   User Not found");
       }
       else{
@@ -53,7 +55,9 @@ setMobile("")
                             <span>Mobile:</span>
                             <input class="form-control" type="text" placeholder="Enter your Mobile No." {...register("mobile",{required:true, minLength:{value:10,message:"Minimum 10 characters required"},
                               maxLength:{value:10,message:"characters exceeded "}})} 
-                            value={mobile} onChange={(e)=>{setMobile(e.target.value)}} required="true"/>
+                            value={mobile} onChange={(e)=>{
+                              setError("")
+                              setMobile(e.target.value)}} required="true"/>
                             {errors.mobile && <p className='text-red-700'>{errors.mobile.message}</p>}
                         </div>
 
@@ -66,8 +70,8 @@ setMobile("")
                             {errors.password && <p className='text-red-700'>{errors.password.message}</p>}
                         </div>
        <button className='bg-green-200 px-3 rounded-full' type='submit'>Login</button>
-       {error && <p style={{ color: 'red' }}>{error}</p>}
        <p>New user ? <a href="/admin/signup">signup</a></p>
+       {error && <p style={{ color: 'red' }}>{error}</p>}
         </form>
         
       </div>

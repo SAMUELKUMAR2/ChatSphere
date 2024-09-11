@@ -5,7 +5,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom'
 import more from '../image/more.png';
 
-const ChatMember = ({userData, setChatSelect, setSelectedUser,setSelectedUserImage }) => {
+const ChatMember = ({userData, setChatSelect,setSelectedUserData }) => {
   const navigate = useNavigate();
 
   const [userList,setUserList]= useState([])
@@ -29,10 +29,9 @@ const ChatMember = ({userData, setChatSelect, setSelectedUser,setSelectedUserIma
     
     const fetchData= async () => {
       try {
-        const response = await axios.get('http://localhost:8080/newuser');
+        const response = await axios.get(`http://localhost:8080/admin/${userData._id}`);
 
-        setUserList(response.data);
-        console.log(response.data);
+        setUserList(response.data.allContacts);
   
       } catch (error) {
         console.error('Error fetching names:', error);
@@ -44,18 +43,21 @@ const ChatMember = ({userData, setChatSelect, setSelectedUser,setSelectedUserIma
   }
     
   return (
-    <div>
+    <div className="w-full h-full ">
       <div>
         <div className='m-1 sticky top-0'>
           <div className='mx-3 flex justify-between'>
-            <span className=' text-2xl text-black font-bold'>{userData.name} 
+            <span className=' text-2xl text-black font-bold'>{userData.username} 
               <span className='text-xl text-black font-bold'>({userData.mobile})</span></span>
           <div className='flex gap-3'>
               {/* AddButton */}
-              <img className='w-8 h-8 bg-white rounded-full cursor-pointer  transition-transform duration-300 hover:scale-125' onClick={handleClick} src={add} alt="" />
+              <img className='w-8 h-8 bg-white rounded-full cursor-pointer  transition-transform duration-300 hover:scale-125'
+               onClick={handleClick} src={add} alt="" />
          {/* Logout */}
+        <div>
          <button onClick={handleLogout} className='md:hidden  w-fit px-3  py-1 bg-red-500 hover:bg-red:300 text-white font-semibold rounded-full  transition-transform duration-300 hover:scale-130'>
          Logout</button>
+         </div>
           </div>
           </div>
         </div>
@@ -69,16 +71,17 @@ const ChatMember = ({userData, setChatSelect, setSelectedUser,setSelectedUserIma
           <button className='bg-slate-300 py-2 px-3 rounded-full'>Group</button>
         </div>
       </div>
-      <div className='p-4 h-[70vh] overflow-y-scroll '>
 
         {/* All Contact */}
+      <div className='p-4 h-[70vh] overflow-y-scroll '>
+
 
         {userList.map((user) => (
         
             <div className='flex justify-between mb-3 pb-1 w-full cursor-pointer  border-b-2 hover:bg-slate-300' key={user._id} onClick={() => 
               {setChatSelect(true)
-              setSelectedUser(user.name)
-              setSelectedUserImage(user.image)
+                setSelectedUserData(user)
+              
             }
 
             }>
@@ -88,7 +91,7 @@ const ChatMember = ({userData, setChatSelect, setSelectedUser,setSelectedUserIma
               </img>
               
               <div className='ml-3 w-full '>
-                <span>{user.name}</span>
+                <span>{user.username}</span>
                 <p> {user.mobile}</p>
               </div>
               </div>
@@ -103,9 +106,6 @@ const ChatMember = ({userData, setChatSelect, setSelectedUser,setSelectedUserIma
             </div>
         ))}
       </div>
-
-
-      {/* AddUser */}
 
     
     </div>

@@ -10,6 +10,7 @@ const Signup = () => {
 
     const [username,setUsername] =useState("");
     const [mobile,setMobile]= useState("");
+    const [image,setImage] = useState("");
     const [password,setPassword]= useState("");
     const [error, setError] = useState('');
 
@@ -20,7 +21,7 @@ const Signup = () => {
     } = useForm();
 
     const Submit=async(data)=>{
-        await axios.post('http://localhost:8080/admin/signup',{username:username,mobile:mobile,password:password})
+        await axios.post('http://localhost:8080/admin/signup',{username:username,mobile:mobile,image:image,password:password})
         .then((response)=>{
           
          console.log(response);
@@ -66,6 +67,11 @@ const Signup = () => {
                               maxLength:{value:10,message:"characters exceeded "}})} 
                             value={mobile} onChange={(e)=>{setMobile(e.target.value)}} required="true"/>
                             {errors.mobile && <p className='text-red-700'>{errors.mobile.message}</p>}
+                        </div>
+
+                        <div class="components">
+                            <span>Image:</span>
+                            <input class="form-control" type="text" placeholder="image url" value={image} {...register("image")} onChange={(e)=>{setImage(e.target.value)}} />
                         </div>
 
                 <div class="components my-3">
