@@ -96,12 +96,14 @@ const navigate = useNavigate();
              <b>{msg.senderId === userData._id ? 'you' : 'them'}:</b> {msg.message}
             
     <p className='text-[9px]  opacity-60 pt-1 '>{}</p>
-
-          </div>
-          
+   </div>    
       ))}
+<<<<<<< HEAD
 
        </div>
+=======
+   </div>
+>>>>>>> cd19511db24314545bfda57401532bf8f2e7a4a3
        {/* input box */}
        <div className="sticky bottom-0  w-full h-[5vh] flex   gap-4">
         <div className="flex ">
